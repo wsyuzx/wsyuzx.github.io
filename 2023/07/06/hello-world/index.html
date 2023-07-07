@@ -2,398 +2,399 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>我的技术与生活——Hello World | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="shortcut icon" href="/imgs/shortcut-icon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/css/public.css" />
-  <link rel="stylesheet" href="/css/layout.css" />
-  <link rel="stylesheet" href="/css/iconfont.css" />
-  <link rel="stylesheet" href="/css/APlayer.min.css" />
-  <script src="/js/APlayer.min.js"></script>
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jquery.pjax.min.js"></script>
+  <title>Hello World | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hello World | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Zhenxing Yu">
+<meta name="twitter:card" content="summary">
 
-  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-  <script>
-    document.title = `我的技术与生活——Hello World`
-  </script>
-<meta name="generator" content="Hexo 6.3.0"></head>
 
-<style>
-  .load {
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(37, 35, 40);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 9999;
-  }
-  .load-circle {
-    width: 80px;
-    height: 80px;
-    border: 8px solid orange;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: rotate 1s linear infinite;
-    filter: drop-shadow(0 0 3px orange);
-  }
-  .load-circle-inner {
-    width: 40px;
-    height: 40px;
-    border: 8px solid orange;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: rotate-reverse .5s linear infinite;
-  }
-  .load-text {
-    margin-top: 20px;
-    font-size: 24px;
-    color: orange;
-    display: flex;
-  }
-  .load-text span {
-    margin: 0 5px;
-    text-shadow: 5px 5px 5px orange;
-    animation: move 1s linear infinite;
-  }
-  .load-text span:nth-child(1) {
-    animation-delay: -0.6s;
-  }
-  .load-text span:nth-child(2) {
-    animation-delay: -0.5s;
-  }
-  .load-text span:nth-child(3) {
-    animation-delay: -0.4s;
-  }
-  .load-text span:nth-child(4) {
-    animation-delay: -0.3s;
-  }
-  .load-text span:nth-child(5) {
-    animation-delay: -0.2s;
-  }
-  .load-text span:nth-child(6) {
-    animation-delay: -0.1s;
-  }
-  @keyframes rotate {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(360deg); }
-  }
-  @keyframes rotate-reverse {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(-360deg); }
-  }
-  @keyframes move {
-    0% { transform: translateY(0%) rotate(0) scale(1); }
-    20% { transform: translateY(20%) rotate(10deg) scale(1.2); }
-    80% { transform: translateY(-10%) rotate(-20deg) scale(.8);}
-    100% { transform: translateY(0) rotate(0) scale(1); }
-  }
+<link rel="icon" href="/img/avatar.jpg">
 
-  .progress {
-    position: fixed;
-    left: 0; top: 0;
-    width: 0;
-    height: 3px;
-    background-color: green;
-    transition: all cubic-bezier(0.215, 0.610, 0.355, 1) .1s;
-    z-index: 9999;
-  }
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
 
-  .to-up {
-    animation: toUp .5s 1;
-  }
-  .gray {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 9999;
-    display: none;
-    pointer-events: none;
-    background-color: #000;
-    mix-blend-mode: color;
-  }
-  @keyframes toUp {
-    from { transform: translateY(15px); opacity: 0; }
-    to { transform: translateY(0) ; opacity: 1; }
-  }
-</style>
-<body>
-  <div id="load" class="load">
-    <div class="load-circle">
-      <div class="load-circle-inner"></div>
-    </div>
-    <p class="load-text">
-      <span>L</span>
-      <span>O</span>
-      <span>A</span>
-      <span>D</span>
-      <span>I</span>
-      <span>N</span>
-      <span>G</span>
-    </p>
-  </div>
-  <div id="container" class="container w-100 vh-100" style="display: none;">
-    <header class="header">
-  <div class="header-wrapper">
-    <div class="header-left">
-      <div class="header-search">
-        <input id="search-input" type="text" class="header-search--input" placeholder="请输入要检索的文章标题" />
-        <span id="search-btn" class="header-search--icon"><i class="iconfont icon-sousuo"></i></span>
-      </div>
-      <div id="search-layer" class="header-search--layer hidden">
-        <p class="title">
-          <span>以下是搜索内容：</span>
-          <span id="close-layer-btn">关闭</span>
-        </p>
-        <ul>
-        </ul>
-      </div>
-    </div>
-    <div class="header-right">
-      <ul class="header-menu">
-        <li>
-          <a href="http://example.com/">
-            <i class="header-menu--icon iconfont icon-shouye"></i>
-            <span class="header-menu--span">首页</span>
-          </a>
-        </li>
-        <li>
-          <a href="http://example.com/log">
-            <i class="header-menu--icon iconfont icon-rizhi"></i>
-            <span class="header-menu--span">日志</span>
-          </a>
-        </li>
-        <li>
-          <a href="http://example.com/link">
-            <i class="header-menu--icon iconfont icon-youqinglianjie"></i>
-            <span class="header-menu--span">友情链接</span>
-          </a>
-        </li>
-        <li>
-          <a href="http://example.com/about">
-            <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
-            <span class="header-menu--span">关于我</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</header>
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
 
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
 <script>
-  const ipt = document.querySelector('#search-input')
-  const btn = document.querySelector('#search-btn')
-  const layer = document.querySelector('#search-layer')
-  const posts = JSON.parse(`[{"title":"Hello World","path":"2023/07/06/hello-world/"}]`)
-  ipt.addEventListener('keyup', e => {
-    if (e.key === 'Enter') {
-      handleSearch()
-    }
-  })
-  btn.addEventListener('click', () => {
-    handleSearch()
-  })
+    hljs.initHighlightingOnLoad();
+</script>
 
-  document.querySelector('#close-layer-btn').addEventListener('click', () => {
-    layer.classList.toggle('hidden')
-  })
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
 
-  function handleSearch() {
-    if (ipt.value.trim() === '') {
-      return
-    }
-    let html = ''
-    const targetPosts = posts.filter(post => post.title.includes(ipt.value))
-    targetPosts.forEach(post => {
-      html += `
-        <li>
-          <div>
-            <a href="/${post.path}">${post.title.replace(new RegExp(ipt.value), `<span>${ipt.value}</span>`)}</a>
-          </div>
-          <img src="${post.cover || '/imgs/default-cover.webp' }" />
-        </li>
-      `
-    })
-    if (html.trim () === '') {
-      html += '<p class="empty">没有搜索到内容</p>'
-    }
-    layer.querySelector('ul').innerHTML = html
-    layer.classList.remove('hidden')
-  }
-</script> 
-    <section id="main" class="main">
-      <div class="main-left-wrapper">
-<div class="main-left">
-  <div class="main-left--block">
-    <div class="main-left--info">
-      <img src="/imgs/avatar.jpg"" class="main-left--avatar" />
-      <div class="main-left--intro">
-        <p class="main-left--name">Cola.</p>
-        <div class="main-left--tags">
-          <span class="main-left--tag">中二</span>
-          <span class="main-left--tag">宅</span>
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Zhenxing Yu</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(1)</small>
+            
         </div>
-      </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
     </div>
-  
     <div>
-      <div class="main-left--motto">
-        <p>“花有重开日，人无再少年”</p>
-        <p>“一个简单普通的男孩”</p>
-      </div>
-      <div class="main-left--github">
-        <span class="line"></span>
-        <a target="_blank" rel="noopener" href="https://github.com/Aizener"><i class="logo iconfont icon-github-fill"></i></a>
-        <span class="line"></span>
-      </div>
-      <div class="main-left--statics">
-        <a href="/categories">
-          <div>
-            <span>0</span>
-            <span>分类</span>
-          </div>
-        </a>
-        <a href="/tags">
-          <div>
-            <span>0</span>
-            <span>标签</span>
-          </div>
-        </a>
-        <a href="/archives">
-          <div>
-            <span>1 </span>
-            <span>归档</span>
-          </div>
-        </a>
-      </div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
     </div>
-  </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="1">
 
-  <div class="main-left--block">
-    <ul class="main-left--menu">
-      
-        <li>
-          <a href="/">
-            <span class="header-menu--span">小站首页</span>
-            <i class="header-menu--icon iconfont icon-shouye"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a href="/log">
-            <span class="header-menu--span">个人日志</span>
-            <i class="header-menu--icon iconfont icon-rizhi"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a href="/link">
-            <span class="header-menu--span">友情链接</span>
-            <i class="header-menu--icon iconfont icon-youqinglianjie"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a href="/about">
-            <span class="header-menu--span">关于自己</span>
-            <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a href="/tools">
-            <span class="header-menu--span">我的工具</span>
-            <i class="header-menu--icon iconfont icon-gongju"></i>
-          </a>
-        </li>
-      
-    </ul>
-  </div>
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
 
-  <div class="main-left--block">
-    <div class="main-left--site">
-      <h5 class="main-left--title">
-        <span>站点信息</span>
-        <i class="iconfont icon-zhandian"></i>
-      </h5>
-      <p class="main-left--subtitle">
-        <span>文章数目：</span>
-        <span>1 篇</span>
-      </p>
-      <p class="main-left--subtitle">
-        <span>最近动态：</span>
-        <span>今天</span>
-      </p>
-      <p class="main-left--subtitle">
-        <span>上线时间：</span>
-        <span>506天</span>
-      </p>
-      <p class="main-left--subtitle">
-        <span>当前版本：</span>
-        <span>v1.0.2</span>
-      </p>
     </div>
-  </div>
-</div></div>
-      <div id="main-container" class="main-container">
-
-
-  <style>
-pre::-webkit-scrollbar {
-  width: 5px;
-  height: 10px;
-  background-color:#F5F5F5;
-}
-/*定义滚动条轨道
-内阴影+圆角*/
-pre::-webkit-scrollbar-track {
-  background-color:#F5F5F5;
-}
-/*定义滑块
-内阴影+圆角*/
-pre::-webkit-scrollbar-thumb {
-  background-color: rgb(69, 83, 100);
-}
-
-pre:active {
-  background-color: rgb(81, 95, 116);
-}
-</style>
-
-<div class="article-container">
-  <div class="article">
-    <h1 class="article-title">Hello World</h1>
-    <div class="article-info">
-      <div class="article-info--item">
-        <div class="article-info--info">
-          
-          <div class="article-info--categories">
-            <span>分类：</span>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
             
-          </div>
-          
-          
-          <div class="article-info--tags">
-            <span>标签：</span>
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
             
-          </div>
-          
-          <p class="article-info--date">日期：2023-07-06 16:54:11</p>
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
         </div>
-        <img src="/imgs/default-cover.webp" alt="" class="article-cover">
-      </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
     </div>
-    <article class="article-content">
-      <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2023/07/06/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-07-06 16:54:11">2023/07/06</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Hello World</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-07-06 16:54:11'>2023-07-06 16:54</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -407,248 +408,194 @@ pre:active {
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
-    </article>
-    
-    <div class="read-nums">
-      <!-- id 将作为查询条件 -->
-      <span id="2023/07/06/hello-world/" class="leancloud_visitors" data-flag-title="Your Article Title">
-        <em class="post-meta-item-text">浏览量</em>
-        <i class="leancloud-visitors-count"></i>
-      </span>
-    </div>
-    <div class="comments-intro">
-      <h2>评论区</h2>
-      <p>欢迎你留下宝贵的意见，昵称输入QQ号会显示QQ头像哦~</p>
-    </div>
-    <div id="vcomments" class="vcomments"></div>
-    
-  </div>
-  <div class="article-catelogue">
-    <div class="article-catelogue--wrapper">
-      <div class="catelogue catelogue-1">
-        <h3>目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-      </div>
       
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-  </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min mobile"></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
 </div>
 
-<script src="http://cdn.yangxiang.cc/prism.js"></script>
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
 
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
 <script>
-  // var定义，避免pjax重新进来造成的重复声明错误
-  var config = JSON.parse('{"enable":true,"appId":"Pf8zCXGEH1qsprnWfikVVujL-gzGzoHsz","appKey":"qOqoiUHhH1TGtLRUYURkLRQX","placeholder":"请留下你宝贵的意见吧~","meta":["nick"],"recordIP":true,"visitor":true,"enableQQ":true}')
-  new Valine({
-    el: '#vcomments',
-    appId: config.appId,
-    appKey: config.appKey,
-    placeholder: config.placeholder,
-    meta: config.meta,
-    recordIP: config.recordIP,
-    visitor: config.visitor,
-    enableQQ: config.enableQQ,
-    path: '2023/07/06/hello-world/'
-  })
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
 </script>
 
+<!--加入行号的高亮代码块样式-->
 
-<script>
-  $(document).on('pjax:complete', function() {
-    const tocs = document.querySelector('.toc')
-    const links = tocs ? tocs.querySelectorAll('a') : []
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        const href = decodeURIComponent(e.href)
-        href.search(/#(.*)/)
-        const id = RegExp.$1
-        const target = document.querySelector('#' + id)
-        const top = target.offsetTop
-        document.documentElement.scrollTo({
-          top: top - 100,
-          behavior: 'smooth'
-        })
-        e.preventDefault()
-      })
-    })
-  })
-</script> 
-
-</div>
-      <div class="main-right-wrapper"><div class="main-right">
-  <div class="main-right--board">
-    <div class="main-right--title">
-      <h5>公告栏</h5>
-      <i class="iconfont icon-gonggao"></i>
-    </div>
-    <div class="main-right--content">
-      Hello~大噶好。唔系可乐爱宅着，欢迎你们来到我的博客小站，希望能在这里收获到有用的东西哦！ 
-    </div>
-  </div>
-
-  <div id="aplayer" class="main-right--music"></div>
-
-  <div class="operate-items">
-    <div class="operate-item backtop">
-      <i class="iconfont icon-huidaodingbu"></i>
-      <span>回到顶部</span>
-    </div>
+<!--自定义样式设置-->
+<style>
     
-    <div class="operate-item turn-comment hidden">
-      <i class="iconfont icon-pinglun"></i>
-      <span>查看评论</span>
-    </div>
     
-  </div>
-
-  <div class="main-right--site">
-    <div class="main-right--power">
-      <p>Power By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a>.</p>
-      <p>Theme：<a target="_blank" rel="noopener" href="https://github.com/Aizener/hexo-theme-cola">Cola.</a></p>
-    </div>
-    <p class="main-right--refer"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">蜀ICP备2022005384号-1</a> </p>
-  </div>
-</div>
-
-<script>
-  function setOperateItem () {
-    const reg = /\d{4}\/\d{2}\/\d{2}\/.+/
-    const path = location.pathname
-    const operateDom = document.querySelector('.main-right .operate-items')
-    const commentDom = document.querySelector('.turn-comment')
-    const cateloguDom = document.querySelector('.article-catelogue > .article-catelogue--wrapper');
-
-    if (commentDom) {
-      if (reg.test(path) || path.match(/\/log\/.+/)) {
-        commentDom.classList.remove('hidden')
-        const newDom = operateDom.cloneNode(true);
-        const _backtopDom = newDom.querySelector('.backtop');
-        const _commentDom = newDom.querySelector('.turn-comment');
-        console.log(_commentDom)
-        _backtopDom.addEventListener('click', () => backTopEvent());
-        _commentDom.addEventListener('click', () => commentDomEvent());
-
-        cateloguDom.appendChild(newDom);
-      } else {
-        commentDom.classList.add('hidden')
-      }
+    .nav {
+        width: 542px;
     }
-  }
-
-  setOperateItem()
-  const musics = JSON.parse(`[{"name":"安河桥","artist":"宋冬野","url":"http://ting6.yymp3.net:82/new25/songdongye/11.mp3","cover":"https://img2.baidu.com/it/u=1260056724,1076343118&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"},{"name":"卡布达","artist":"暂无","url":"music/kabuda.mp3","cover":"https://img2.baidu.com/it/u=705831265,2862720033&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"}]`)
-  const ap = new APlayer({
-    container: document.querySelector('#aplayer'),
-    audio: musics,
-  })
-
-  $(document).on('pjax:complete', function() {
-    setOperateItem()
-  })
-
-  document.querySelector('.backtop').addEventListener('click', () => {
-    backTopEvent();
-  })
-  const dom = document.querySelector('.turn-comment')
-  dom && dom.addEventListener('click', () => {
-    commentDomEvent();
-  })
-
-  function backTopEvent() {
-    document.documentElement.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
-  function commentDomEvent() {
-    const commentDom = document.querySelector('.comments-intro')
-    if (!commentDom) return
-    const top = commentDom.offsetTop, height = commentDom.offsetHeight
-    document.documentElement.scrollTo({
-      top: top - 2 * height,
-      behavior: 'smooth'
-    })
-  }
-</script></div>
-    </section>
-  </div>
-  <div id="progress" class="progress"></div>
-  <div id="gray" class="gray"></div>
-
-  <script>
-    function initScroll () {
-      document.addEventListener('scroll', () => {
-        const doc = document.documentElement
-        const scrollTop = doc.scrollTop
-        const pageHeight = doc.offsetHeight
-        const clientHeight = doc.clientHeight
-        const ratio = scrollTop / (pageHeight - clientHeight)
-        const progress = document.querySelector('#progress')
-        const avatarImg = document.querySelector('.main-left--avatar')
-        progress.style.width = (100 * ratio) + '%'
-        avatarImg.style.transform = `rotate(${360 * ratio}deg)`
-      })
+    .nav.fullscreen {
+        margin-left: -542px;
     }
-
-    const rootPath = "/"
-
-    const checkAndSetArticlePageLayout = () => {
-      if (/^\/?\d{4}\/\d{2}\/\d{2}\/.*/.test(location.pathname.replace(rootPath, ''))) {
-        $('.main-container, .main-right, .main-right-wrapper').addClass('is-article')
-      } else {
-        $('.main-container, .main-right, .main-right-wrapper').removeClass('is-article')
-      }
-    }
-
-    const gray = "none"
-    const setGrayStyle = () => {
-      if (gray === 'none') {
-        return
-      } else if (gray === 'index') {
-        location.pathname === '/' ? $('#gray').show() : $('#gray').hide()
-      } else if (gray === 'all') {
-        $('#gray').show()
-      }
-    }
-    setGrayStyle()
-
-
-    window.onload = function () {
-      checkAndSetArticlePageLayout()
-      setTimeout(() => {
-        $('#load').slideUp()
-        $('#container').slideToggle()
-        setTimeout(() => {
-          initScroll();
-          window.loadImageFn();
-        }, 500)
-      }, 500)
+    .nav-left {
+        width: 120px;
     }
     
-    let status = 0
-    // 对所有链接跳转事件绑定pjax容器container
-    $(document).pjax('a[target!=_blank]', '#main-container', {
-      container: '#main-container',
-      fragment: '#main-container',
-      timeout: 8000
-    })
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
 
-    $(document).on('pjax:start', function() {
-    })
-    $(document).on('pjax:complete', function() {
-      status = 0
-      $('.main-container').addClass('to-up').on('animationend', function() {
-        $(this).removeClass('to-up')
-      })
-      setGrayStyle()
-      checkAndSetArticlePageLayout()
-    })
-    $(document).on('pjax:popstate', function() {
-      status = -1
-      checkAndSetArticlePageLayout()
-      // $('.main-container').fadeIn()
-    })
-  </script>
-</body>
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
